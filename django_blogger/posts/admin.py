@@ -40,3 +40,8 @@ class GroupAdmin(admin.ModelAdmin):
 @admin.register(models.Label)
 class GroupAdmin(admin.ModelAdmin):
     search_fields = ('name',)
+
+@admin.register(models.PostChangeLog)
+class GroupAdmin(admin.ModelAdmin):
+    search_fields = ('title', 'post__title')
+    autocomplete_fields = ('post',)

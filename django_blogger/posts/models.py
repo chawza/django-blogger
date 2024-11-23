@@ -27,8 +27,22 @@ class Post(models.Model):
         MD = 2, 'Markdown'
         HTML = 3, 'HTML'
 
-    type = models.PositiveIntegerField(default=Type.TEXT, choices=Type.choices)
+    type = models.PositiveIntegerField(choices=Type.choices, default=Type.TEXT)
+    content = models.TextField(blank=True, default='')
 
-    group = models.ForeignKey(Group, null=True, blank=True, on_delete=models.PROTECT)
-    labels = models.ManyToManyField(Label, blank=True)
+    group = models.ForeignKey(Group, null=True, blank=True, on_delete=models.PROTECT, related_name='posts')
+    labels = models.ManyToManyField(Label, blank=True, related_name='posts')
 
+    def __str__(self):
+        return self.title or super().__str__()
+
+
+
+class PostChangeLog(models.Model):
+    post = models.ForeignKey(Post, related_name='logs', on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    created = models.DateTimeField(blank=True, default=timezone.localtime)
+    # by = models.ForeignKey(User, )
+
+    def __str__(self):
+        return self.title or super().__str__()
