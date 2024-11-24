@@ -12,7 +12,7 @@ setup(
     author='Your Name',
     author_email='your.email@example.com',
     description='A reusable Django blog application',
-    long_description=open('README.md').read(),
+    # long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/yourusername/django-reusable-blog',
     classifiers=[

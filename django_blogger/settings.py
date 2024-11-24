@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DJANGO_BLOGGER_DEV = True
+
 
 # Application definition
 
@@ -37,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_blogger.posts'
+    'django_blogger'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'django_blogger.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.as_posix() + '/templates'],
+        'DIRS': [Path(__file__).parent.joinpath('templates').as_posix()],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

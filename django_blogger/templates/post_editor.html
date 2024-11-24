@@ -1,4 +1,3 @@
-# blog/templates/blog/post_editor.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,22 +36,6 @@
             renderingConfig: {
                 codeSyntaxHighlighting: true,
             }
-        });
-        
-        simplemde.codemirror.on("change", function(){
-            var content = simplemde.value();
-            fetch('/blog/api/preview/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                },
-                body: JSON.stringify({content: content})
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('preview').innerHTML = data.html;
-            });
         });
     </script>
 </body>

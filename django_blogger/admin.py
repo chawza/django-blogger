@@ -26,7 +26,7 @@ class PostAdmin(admin.ModelAdmin):
     
     def edit_button(self, obj):
         if obj.pk:
-            url = reverse('blog:post_editor', kwargs={'pk': obj.pk})
+            url = reverse('post_editor', kwargs={'pk': obj.pk})
             return format_html(
                 '<a class="button" href="{}">Edit in Editor</a>',
                 url
